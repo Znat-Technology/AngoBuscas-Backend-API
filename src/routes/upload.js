@@ -19,7 +19,7 @@ const s3 = new aws.S3()
 const upload = multer({
   storage: multerS3({
     s3,
-    bucket: 'angobuscas-storage',
+    bucket: process.env.BUCKET_STORAGE,
     acl: 'public-read',
     key(req, file, callback) {
       callback(null, Date.now() + file.originalname)

@@ -6,6 +6,10 @@ const DocumentController = require('../controllers/DocumentController')
  
 router.get('/', DocumentController.index)
 
+router.get('/mensagem', (req, res, next) => {
+  res.json({msg: "ok"})
+})
+
 router.get('/submit', DocumentController.submited)
 
 router.put('/search', DocumentController.search)

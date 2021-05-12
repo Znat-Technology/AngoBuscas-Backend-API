@@ -7,12 +7,12 @@ const cors = require('cors')
 // Cria o servidor Node js com express
 const app = express()
 
-//Conexao com o banco de dados 
-const options = {useNewUrlParser: true, useUnifiedTopology: true}
-mongoose.connect('mongodb://localhost/AngoBuscas', options)
-
 // Middleware para configurar o arquivo .env na app
 require('dotenv').config()
+
+//Conexao com o banco de dados 
+const options = {useNewUrlParser: true, useUnifiedTopology: true}
+mongoose.connect(process.env.MONGO_URL, options)
 
 // Middleware para usar o body-parser(que converte a nossa requisicao para o formato json)
 app.use(bodyParser.json())
@@ -22,17 +22,17 @@ app.use(cors())
 
 // Middlewares para as rotas da app
 
-const categoryRoute = require('./src/routes/category')
-const placeRoute = require('./src/routes/place')
-const documentRoute = require('./src/routes/document')
-const userRoute = require('./src/routes/user')
-const companyRoute = require('./src/routes/company')
-const adminRoute = require('./src/routes/admin')
-const tokeRoute = require('./src/routes/validate_token')
-const advertRoute = require('./src/routes/advert')
-const liftingtRoute = require('./src/routes/lifting')
-const peopleRoute = require('./src/routes/people')
-const blogRoute = require('./src/routes/notice')
+const categoryRoute = require('./routes/category')
+const placeRoute = require('./routes/place')
+const documentRoute = require('./routes/document')
+const userRoute = require('./routes/user')
+const companyRoute = require('./routes/company')
+const adminRoute = require('./routes/admin')
+const tokeRoute = require('./routes/validate_token')
+const advertRoute = require('./routes/advert')
+const liftingtRoute = require('./routes/lifting')
+const peopleRoute = require('./routes/people')
+const blogRoute = require('./routes/notice')
 
 app.use('/uploads',express.static('uploads'))
 
@@ -47,8 +47,8 @@ app.use('/api/people',peopleRoute)
 app.use('/api/lifting', liftingtRoute)
 app.use('/api/admin',tokeRoute, adminRoute)
 
-const schedule = require('./src/repositories/schedule')
-const sent = require('./src/controllers/LiftingController')
+const schedule = require('./repositories/schedule')
+const sent = require('./controllers/LiftingController')
 
 schedule.executeEveryDayAtMorning(() => {
   sent.feedback()

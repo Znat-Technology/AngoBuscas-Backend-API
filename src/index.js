@@ -53,8 +53,8 @@ const sent = require('./controllers/LiftingController')
 schedule.executeEveryDayAtMorning(() => {
   sent.feedback()
 })
-const PORT = process.env.PORT || 3000
+
 // Roda o servidor na porta configurada no arquivo .env
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Rodanda a app na porta ${process.env.PORT}`)
 })

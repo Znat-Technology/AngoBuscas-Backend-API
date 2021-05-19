@@ -23,9 +23,6 @@ const liftingSchema = new mongoose.Schema({
     email: {
       type: String
     },
-    past: {
-      type: Date
-    },
     done: {
       type: Boolean,
       default: false  

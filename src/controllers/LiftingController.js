@@ -20,9 +20,8 @@ exports.index = async (req, res, next) => {
 }
 
 exports.post = async (req, res, next) => {
-    const { documents, telephone_number, email, past } = req.body
-    let date = new Date(past)
-    const lifting = new Lifting({ documents, telephone_number, email, past: date })
+    const { documents, telephone_number, email } = req.body
+    const lifting = new Lifting({ documents, telephone_number, email})
     try {
       const response = await lifting.save()
       res.status(201).json(response)

@@ -3,12 +3,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
+// Middleware para configurar o arquivo .env na app
+require('dotenv').config()
 
 // Cria o servidor Node js com express
 const app = express()
 
-// Middleware para configurar o arquivo .env na app
-require('dotenv').config()
 
 //Conexao com o banco de dados 
 const options = {useNewUrlParser: true, useUnifiedTopology: true}

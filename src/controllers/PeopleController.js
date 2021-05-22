@@ -27,7 +27,7 @@ exports.search = async (req, res, next) => {
   const filter = {
     $or: [
       {
-        onwner: { $regex: search, $options: "i" },
+        name: { $regex: search, $options: "i" },
       },
       {
         description: { $regex: search, $options: "i" },
@@ -58,7 +58,7 @@ exports.count = async (req, res, next) => {
   const filter = {
     $or: [
       {
-        onwner: { $regex: search, $options: "i" },
+        name: { $regex: search, $options: "i" },
       },
       {
         description: { $regex: search, $options: "i" },
